@@ -1,0 +1,44 @@
+name: CI - Tests (Unittest + Pytest)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-unittest:
+    name: Proves Unittest (T02-Bloc3-0487)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar el repositori
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instal·lar dependències
+        run: pip install -r requirements.txt
+
+      - name: Executar proves Unittest
+        run: python -m unittest test_T02_Bloc3_0487 -v
+
+  test-pytest:
+    name: Proves Pytest (tascab2-03)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar el repositori
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instal·lar dependències
+        run: pip install -r requirements.txt
+
+      - name: Executar proves Pytest
+        run: pytest -v
